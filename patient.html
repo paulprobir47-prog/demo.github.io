@@ -1,0 +1,212 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulse Medicare - Patient Management</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+padding:20px;
+}
+
+.header{
+background:#009688;
+color:#fff;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.header h2{
+font-size:28px;
+}
+
+.container{
+display:flex;
+gap:20px;
+}
+
+.form-box,.table-box{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.form-box{
+width:35%;
+}
+
+.table-box{
+width:65%;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+color:#fff;
+margin-top:10px;
+}
+
+.add{
+background:#009688;
+}
+
+.edit{
+background:#ff9800;
+}
+
+.delete{
+background:#e53935;
+}
+
+.search{
+width:300px;
+margin-bottom:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+table th,table td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+table th{
+background:#009688;
+color:#fff;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+color:#666;
+}
+</style>
+
+</head>
+<body>
+
+<div class="header">
+<h2><i class="fa-solid fa-hospital-user"></i> Patient Management</h2>
+<h3>Pulse Medicare</h3>
+</div>
+
+<div class="container">
+
+<div class="form-box">
+
+<h3>Add Patient</h3>
+
+<input type="text" placeholder="Patient ID">
+
+<input type="text" placeholder="Patient Name">
+
+<input type="number" placeholder="Age">
+
+<select>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+
+<input type="text" placeholder="Phone Number">
+
+<input type="text" placeholder="Address">
+
+<button class="add">
+<i class="fa fa-plus"></i> Add Patient
+</button>
+
+</div>
+
+<div class="table-box">
+
+<input class="search" type="text" placeholder="Search Patient...">
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Age</th>
+<th>Gender</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>P001</td>
+<td>Rahul Sharma</td>
+<td>30</td>
+<td>Male</td>
+<td>9876543210</td>
+<td>
+<button class="edit"><i class="fa fa-pen"></i></button>
+<button class="delete"><i class="fa fa-trash"></i></button>
+</td>
+</tr>
+
+<tr>
+<td>P002</td>
+<td>Priya Das</td>
+<td>25</td>
+<td>Female</td>
+<td>9123456780</td>
+<td>
+<button class="edit"><i class="fa fa-pen"></i></button>
+<button class="delete"><i class="fa fa-trash"></i></button>
+</td>
+</tr>
+
+<tr>
+<td>P003</td>
+<td>Amit Roy</td>
+<td>45</td>
+<td>Male</td>
+<td>9988776655</td>
+<td>
+<button class="edit"><i class="fa fa-pen"></i></button>
+<button class="delete"><i class="fa fa-trash"></i></button>
+</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="footer">
+Developed by <strong>Pro Infotech</strong>
+</div>
+
+</body>
+</html>
