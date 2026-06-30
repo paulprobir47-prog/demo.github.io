@@ -193,7 +193,54 @@ grid-template-columns:1fr;
     text-decoration:none;
     display:block;
 }
+/* Light Theme (Default) */
+body{
+    background:#f4f6f9;
+    color:#000;
+    transition:0.3s;
+}
 
+/* Dark Theme */
+.dark-mode{
+    background:#121212;
+    color:#ffffff;
+}
+
+.dark-mode .sidebar{
+    background:#1e1e1e;
+}
+
+.dark-mode .topbar{
+    background:#222;
+    color:#fff;
+}
+
+.dark-mode .card{
+    background:#2b2b2b;
+    color:#fff;
+}
+
+.dark-mode table{
+    background:#2b2b2b;
+    color:#fff;
+}
+
+.dark-mode th{
+    background:#009688;
+}
+
+.dark-mode td{
+    border-color:#555;
+}
+
+#themeBtn{
+    padding:8px 15px;
+    border:none;
+    background:#009688;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
 .sidebar ul li a:hover{
     color:#fff;
 }
