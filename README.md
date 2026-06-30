@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulse Medicare - Login</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+<title>Pulse - Medicare Management System</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 
@@ -13,7 +15,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,Arial,sans-serif;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -21,123 +23,209 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#0f9b8e,#0b6d89);
+background:linear-gradient(135deg,#009688,#1565C0);
+overflow:hidden;
 }
 
-.login-container{
+/* Background Circles */
+
+body::before{
+content:'';
+position:absolute;
+width:350px;
+height:350px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+top:-120px;
+left:-120px;
+}
+
+body::after{
+content:'';
+position:absolute;
 width:400px;
-background:#fff;
-border-radius:15px;
-padding:35px;
-box-shadow:0 15px 40px rgba(0,0,0,.25);
+height:400px;
+background:rgba(255,255,255,.08);
+border-radius:50%;
+bottom:-180px;
+right:-150px;
+}
+
+.login-box{
+
+position:relative;
+z-index:10;
+width:420px;
+background:white;
+padding:40px;
+border-radius:18px;
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
 }
 
 .logo{
+
 text-align:center;
-margin-bottom:15px;
+margin-bottom:20px;
+
 }
 
 .logo i{
-font-size:60px;
-color:#0f9b8e;
+
+font-size:65px;
+color:#009688;
+
 }
 
 .logo h1{
+
+font-size:40px;
 margin-top:10px;
-font-size:32px;
-color:#0f9b8e;
+color:#009688;
+
 }
 
 .logo p{
+
 color:#777;
 font-size:14px;
+
 }
 
 .heading{
+
 text-align:center;
-margin:25px 0;
+margin-bottom:25px;
+
 }
 
 .heading h2{
+
 color:#333;
-margin-bottom:5px;
+
 }
 
 .heading p{
+
+margin-top:5px;
 color:#888;
+
 }
 
 .input-box{
+
 position:relative;
 margin-bottom:20px;
+
 }
 
 .input-box input{
+
 width:100%;
-padding:14px 15px 14px 45px;
+padding:14px 15px 14px 50px;
 border:1px solid #ccc;
 border-radius:8px;
 font-size:16px;
 outline:none;
 transition:.3s;
+
 }
 
 .input-box input:focus{
-border-color:#0f9b8e;
-box-shadow:0 0 8px rgba(15,155,142,.4);
+
+border-color:#009688;
+box-shadow:0 0 8px rgba(0,150,136,.3);
+
 }
 
 .input-box i{
+
 position:absolute;
-left:15px;
+left:18px;
 top:16px;
-color:#0f9b8e;
+font-size:18px;
+color:#009688;
+
+}
+
+.options{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:14px;
+margin-bottom:20px;
+
+}
+
+.options a{
+
+text-decoration:none;
+color:#009688;
+font-weight:600;
+
+}
+
+.options label{
+
+color:#555;
+
 }
 
 button{
+
 width:100%;
 padding:14px;
-background:#0f9b8e;
 border:none;
 border-radius:8px;
+background:#009688;
 color:white;
-font-size:17px;
+font-size:18px;
 cursor:pointer;
 transition:.3s;
+
 }
 
 button:hover{
-background:#08786d;
-}
 
-.forgot{
-text-align:center;
-margin-top:18px;
-}
+background:#00796B;
 
-.forgot a{
-text-decoration:none;
-color:#0f9b8e;
-font-weight:600;
 }
 
 .footer{
+
 margin-top:30px;
 text-align:center;
 font-size:14px;
 color:#666;
+
 }
 
 .footer a{
+
 text-decoration:none;
-color:#0f9b8e;
+color:#009688;
 font-weight:bold;
+
 }
 
-@media(max-width:450px){
+.error{
 
-.login-container{
+color:red;
+font-size:14px;
+text-align:center;
+margin-top:15px;
+display:none;
+
+}
+
+@media(max-width:480px){
+
+.login-box{
+
 width:95%;
+padding:30px;
+
 }
 
 }
@@ -145,48 +233,122 @@ width:95%;
 </style>
 
 </head>
+
 <body>
 
-<div class="login-container">
+<div class="login-box">
 
 <div class="logo">
+
 <i class="fa-solid fa-heart-pulse"></i>
+
 <h1>Pulse</h1>
+
 <p>Medicare Management System</p>
+
 </div>
 
 <div class="heading">
+
 <h2>Welcome Back!</h2>
+
 <p>Login to Continue</p>
+
 </div>
 
-<form>
+<form id="loginForm">
 
 <div class="input-box">
+
 <i class="fa-solid fa-user"></i>
-<input type="text" placeholder="Username" required>
+
+<input
+type="text"
+id="username"
+placeholder="Username"
+required>
+
 </div>
 
 <div class="input-box">
+
 <i class="fa-solid fa-lock"></i>
-<input type="password" placeholder="Password" required>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
+
+</div>
+
+<div class="options">
+
+<label>
+
+<input type="checkbox">
+
+Remember Me
+
+</label>
+
+<a href="#">Forgot Password?</a>
+
 </div>
 
 <button type="submit">
+
+<i class="fa-solid fa-right-to-bracket"></i>
+
 Login
+
 </button>
+
+<div class="error" id="error">
+
+Invalid Username or Password
+
+</div>
 
 </form>
 
-<div class="forgot">
-<a href="#">Forgot Password?</a>
-</div>
-
 <div class="footer">
-Developed by <a href="#">Pro Infotech</a>
+
+Developed by
+
+<a href="#">Pro Infotech</a>
+
 </div>
 
 </div>
+
+<script>
+
+document.getElementById("loginForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let username=document.getElementById("username").value;
+
+let password=document.getElementById("password").value;
+
+if(username=="admin" && password=="12345"){
+
+alert("Login Successful!");
+
+window.location.href="dashboard.html";
+
+}
+
+else{
+
+document.getElementById("error").style.display="block";
+
+}
+
+});
+
+</script>
 
 </body>
 </html>
