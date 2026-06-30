@@ -1,0 +1,1074 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-bs-theme="light" data-sidebar-size="sm" data-sidebar-image="none" data-preloader="enable" data-theme="default" data-theme-colors="default">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+
+    <!-- Layout config Js -->
+    <script src="/assets/js/layout.js"></script>
+    <!-- Bootstrap Css -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+    <script src="/lib/microsoft-signalr/signalr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- dropzone css -->
+    <link rel="stylesheet" href="/assets/libs/dropzone/dropzone.css" type="text/css" />
+    <link href="/css/multipleimageupload.css" rel="stylesheet" />
+    <!-- Filepond css -->
+    <link rel="stylesheet" href="/assets/libs/filepond/filepond.min.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.css">
+    <!-- custom Css-->
+    <link href="/assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/sweetAlert/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css" integrity="sha512-vebUliqxrVkBy3gucMhClmyQP9On/HAWQdKDXRaAlb/FKuTbxkjPKUyqVOxAcGwFDka79eTF+YXwfke1h3/wfg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- App Css-->
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/validate.css" rel="stylesheet" />
+    <script src="/js/toastr.min.js"></script>
+    <link href="/css/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+    <script src="/js/custom.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/lib/summernote/summernote-lite.min.css" rel="stylesheet" />
+    <link href="/lib/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <script src="/lib/jquery-ui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    <script src="/js/xlsx/xlsx.full.min.js"></script>
+
+    <link href="/lib/cropper/cropper.min.css" rel="stylesheet" />
+    <script src="/lib/cropper/cropper.min.js"></script>
+    <style>
+        .loader{
+        position:fixed;
+        top:0;
+        left:0;
+        z-index:2;
+        height:100vh;
+        width:100vw;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background-color: #464646e0;
+        transition:opacity 0.1s,visibility 0.1s;
+        }
+        .loader-hidden{
+        opacity:0;
+        visibility:hidden;
+        }
+
+
+
+        .loader::after {
+        content: '';
+        width: 35px;
+        height: 35px;
+        border: 3px solid #dddddd;
+        border-top-color: #299ce2;
+        border-right-color: #299ce2;
+        border-left-color: #299ce2;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        animation: spin 1s infinite linear;
+
+        }
+
+        .loader-content::after {
+        content: 'Please Wait...';
+        position: absolute;
+        white-space: nowrap;
+        top: 53%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-family: cursive;
+        }
+        @keyframes spin{
+        from{
+        transform:rotate(0turn);
+        }
+        to{
+        transform:rotate(1turn);
+        }
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+    <!-- Begin page -->
+    <div b-iu559il195 id="layout-wrapper">
+      
+        <header b-iu559il195 id="page-topbar">
+            <div b-iu559il195 class="layout-width">
+                <div b-iu559il195 class="navbar-header">
+                    <div b-iu559il195 class="d-flex">
+                        <button b-iu559il195 type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger material-shadow-none" id="topnav-hamburger-icon">
+                            <span b-iu559il195 class="hamburger-icon open">
+                                <span b-iu559il195></span>
+                                <span b-iu559il195></span>
+                                <span b-iu559il195></span>
+                            </span>
+                        </button>
+
+                        <div b-iu559il195 class="d-flex align-items-center">
+                            <span b-iu559il195 class="fw-semibold fs-5">Branch : &nbsp</span>
+                            <a b-iu559il195 href="/Auth/SelectBranch" class="link-info link-offset-2 text-decoration-none link-underline-opacity-25 link-underline-opacity-100-hover fs-5">
+                                Baguiati
+                            </a>
+                        </div>
+                    </div>
+
+                    <div b-iu559il195 class="d-flex align-items-center">
+                        <div b-iu559il195 class="ms-1 header-item d-none d-sm-flex">
+                            <button b-iu559il195 type="button" id="toggleThemeButton" class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle light-dark-mode">
+                                <i b-iu559il195 class='bx bx-moon fs-22'></i>
+                            </button>
+                        </div>
+
+                        <div b-iu559il195 class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
+                            <button b-iu559il195 type="button" class="btn btn-icon btn-topbar material-shadow-none btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
+                                <i b-iu559il195 class='bx bx-bell fs-22'></i>
+                                <span b-iu559il195 class="position-absolute topbar-badge fs-10 translate-middle badge rounded-pill bg-danger NotiCount d-none"><span b-iu559il195 class="visually-hidden">unread messages</span></span>
+                            </button>
+                            <div b-iu559il195 class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications-dropdown">
+                                <div b-iu559il195 class="dropdown-head bg-primary bg-pattern rounded-top">
+                                    <div b-iu559il195 class="p-3">
+                                        <div b-iu559il195 class="row align-items-center">
+                                            <div b-iu559il195 class="col">
+                                                <h6 b-iu559il195 class="m-0 fs-16 fw-semibold text-white"> Notifications </h6>
+                                            </div>
+                                            <div b-iu559il195 class="col-auto dropdown-tabs">
+                                                <span b-iu559il195 class="badge bg-light text-body fs-13 cursor-pointer" id="clearAll"> Clear All</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div b-iu559il195 class="px-2 pt-2">
+                                        <ul b-iu559il195 class="nav nav-tabs dropdown-tabs nav-tabs-custom" data-dropdown-tabs="true" id="notificationItemsTab" role="tablist">
+                                            <li b-iu559il195 class="nav-item waves-effect waves-light">
+                                                <a b-iu559il195 class="nav-link active" data-bs-toggle="tab" href="#messages-tab" role="tab" aria-selected="false">
+                                                    Messages
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+
+                                <div b-iu559il195 class="tab-content position-relative" id="notificationItemsTabContent">
+                                    <div b-iu559il195 class="tab-pane fade py-2 ps-2 show active" id="messages-tab" role="tabpanel" aria-labelledby="messages-tab">
+                                        <div b-iu559il195 data-simplebar style="max-height: 560px; overflow:auto" class="pe-2 noti-content">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div b-iu559il195 class="dropdown ms-sm-3 header-item topbar-user">
+                            <button b-iu559il195 type="button" class="btn material-shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span b-iu559il195 class="d-flex align-items-center">
+                                            <img class="rounded-circle header-profile-user" src="/assets/images/male-default.jpg" alt="Header Avatar">
+                                    <span b-iu559il195 class="text-start ms-xl-2">
+                                        <span b-iu559il195 class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">admin</span>
+                                        <span b-iu559il195 class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Admin</span>
+                                    </span>
+                                </span>
+                            </button>
+                            <div b-iu559il195 class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <h6 b-iu559il195 class="dropdown-header">Welcome admin!</h6>
+                                <a b-iu559il195 class="dropdown-item" href="/Auth/UserProfile"><i b-iu559il195 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span b-iu559il195 class="align-middle">Profile</span></a>
+                                <div b-iu559il195 class="dropdown-divider"></div>
+                                <a b-iu559il195 class="dropdown-item logout"  href="/Auth/SignOut"><i b-iu559il195 class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span b-iu559il195 class="align-middle" data-key="t-logout">Logout</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ========== App Menu ========== -->
+        <div b-iu559il195 class="app-menu navbar-menu">
+            <!-- LOGO -->
+            <div b-iu559il195 class="navbar-brand-box">
+                <!-- Dark Logo-->
+                <a b-iu559il195 href="/" class="logo logo-dark">
+                    <span b-iu559il195 class="logo-sm">
+                        <img src="/assets/images/logoS-sm.png" alt="" height="50">
+                    </span>
+                    <span b-iu559il195 class="logo-lg">
+                        <img src="/assets/images/logoS-lg.png" alt="" height="50">
+                    </span>
+                </a>
+                <!-- Light Logo-->
+                <a b-iu559il195 href="/" class="logo logo-light">
+                    <span b-iu559il195 class="logo-sm">
+                        <img src="/assets/images/logoS-sm.png" alt="" height="50">
+                    </span>
+                    <span b-iu559il195 class="logo-lg">
+                        <img src="/assets/images/logoS-lg.png" alt="" height="50">
+                    </span>
+                </a>
+                <button b-iu559il195 type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
+                    <i b-iu559il195 class="ri-record-circle-line"></i>
+                </button>
+            </div>
+
+            <!-- Sidebar -->
+            <div b-iu559il195 id="scrollbar">
+                <div b-iu559il195 class="container-fluid">
+                    <div b-iu559il195 id="two-column-menu">
+                    </div>
+                    <ul b-iu559il195 class="navbar-nav" id="navbar-nav">
+                        <!-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li> -->
+                        
+                        <li b-iu559il195 class="nav-item position-relative search-list">
+                            <label b-iu559il195 class="search-icon-lbl"><i b-iu559il195 class="fa-solid fa-magnifying-glass"></i></label>
+                            <input b-iu559il195 type="text" class="form-control" id="SearchMenu" placeholder="Search Menu" />
+                        </li>
+                        <li b-iu559il195 class="nav-item">
+                            <a b-iu559il195 class="nav-link menu-link" onclick="Showloader()" href="/" aria-expanded="false" aria-controls="sidebarLanding">
+                                <i b-iu559il195 class="bi bi-speedometer2"></i>
+                                <span b-iu559il195 data-key="t-Dashboard">Dashboard</span>
+                            </a>
+                        </li>
+                                    <li b-iu559il195 class="nav-item root">
+                                        <a b-iu559il195 class="nav-link menu-link" href="#cf067c31-f102-4e92-baf4-1e8f12c225fd" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                            <i b-iu559il195 class="fa-solid fa-gears"></i> <span b-iu559il195 data-key="t-LIMS Settings">LIMS Settings</span>
+                                        </a>
+                                        <div b-iu559il195 class="collapse menu-dropdown" id="cf067c31-f102-4e92-baf4-1e8f12c225fd">
+                                            <ul b-iu559il195 class="nav nav-sm flex-column">
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/RateCategory" onclick="Showloader()" class="nav-link" data-key="t-Rate Category"> Rate Category </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Instrument" onclick="Showloader()" class="nav-link" data-key="t-Instrument"> Instrument </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/LabGroup" onclick="Showloader()" class="nav-link" data-key="t-Lab Group"> Lab Group </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Tests" onclick="Showloader()" class="nav-link" data-key="t-Test"> Test </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Method" onclick="Showloader()" class="nav-link" data-key="t-Method"> Method </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/SampleVialSetting" onclick="Showloader()" class="nav-link" data-key="t-Sample Vial"> Sample Vial </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Units" onclick="Showloader()" class="nav-link" data-key="t-Units"> Units </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Kits" onclick="Showloader()" class="nav-link" data-key="t-Kits"> Kits </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/Parameter" onclick="Showloader()" class="nav-link" data-key="t-Parameter"> Parameter </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/LIMS/ReportCommentMaster" onclick="Showloader()" class="nav-link" data-key="t-Report Comment Master"> Report Comment Master </a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li b-iu559il195 class="nav-item root">
+                                        <a b-iu559il195 class="nav-link menu-link" href="#cab53361-f588-4209-8168-0948035f89a2" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                            <i b-iu559il195 class="fa fa-cog"></i> <span b-iu559il195 data-key="t-Hospital Master">Hospital Master</span>
+                                        </a>
+                                        <div b-iu559il195 class="collapse menu-dropdown" id="cab53361-f588-4209-8168-0948035f89a2">
+                                            <ul b-iu559il195 class="nav nav-sm flex-column">
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/HIMSMaster/SubDepartment" onclick="Showloader()" class="nav-link" data-key="t-Sub Department"> Sub Department </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/HIMSMaster/DoctorDesignation" onclick="Showloader()" class="nav-link" data-key="t-Doctor Designation"> Doctor Designation </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/HIMSMaster/Doctor" onclick="Showloader()" class="nav-link" data-key="t-Doctor"> Doctor </a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li b-iu559il195 class="nav-item root">
+                                        <a b-iu559il195 class="nav-link menu-link" href="#4840a91a-64f4-4f45-adde-52f63e25561b" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                            <i b-iu559il195 class="fa-solid fa-gears"></i> <span b-iu559il195 data-key="t-Settings">Settings</span>
+                                        </a>
+                                        <div b-iu559il195 class="collapse menu-dropdown" id="4840a91a-64f4-4f45-adde-52f63e25561b">
+                                            <ul b-iu559il195 class="nav nav-sm flex-column">
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/APP/Branch" onclick="Showloader()" class="nav-link" data-key="t-Branch"> Branch </a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li b-iu559il195 class="nav-item root">
+                                        <a b-iu559il195 class="nav-link menu-link" href="#e8c0d013-756e-4f24-9644-a5eb1e10b9f4" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                            <i b-iu559il195 class="fa-solid fa-gears"></i> <span b-iu559il195 data-key="t-System Settings">System Settings</span>
+                                        </a>
+                                        <div b-iu559il195 class="collapse menu-dropdown" id="e8c0d013-756e-4f24-9644-a5eb1e10b9f4">
+                                            <ul b-iu559il195 class="nav nav-sm flex-column">
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/Auth/RootMenu" onclick="Showloader()" class="nav-link" data-key="t-Root Menu"> Root Menu </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/Auth/SubMenu" onclick="Showloader()" class="nav-link" data-key="t-Sub Menu"> Sub Menu </a>
+                                                        </li>
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/App/CompanyInfo" onclick="Showloader()" class="nav-link" data-key="t-Hospital Info"> Hospital Info </a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li b-iu559il195 class="nav-item root">
+                                        <a b-iu559il195 class="nav-link menu-link" href="#172672ad-5388-4724-b1e8-29e2cf4597fd" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLanding">
+                                            <i b-iu559il195 class="fa  fa-user"></i> <span b-iu559il195 data-key="t-Admin">Admin</span>
+                                        </a>
+                                        <div b-iu559il195 class="collapse menu-dropdown" id="172672ad-5388-4724-b1e8-29e2cf4597fd">
+                                            <ul b-iu559il195 class="nav nav-sm flex-column">
+                                                        <li b-iu559il195 class="nav-item sub">
+                                                            <a b-iu559il195 href="/Auth/User" onclick="Showloader()" class="nav-link" data-key="t-User"> User </a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                        <li b-iu559il195 class="nav-item" style="border-top: 1px solid rgb(94 111 128 / 50%); margin-top: 30px;">
+                            <a b-iu559il195 class="nav-link menu-link" href="/Auth/UserProfile"  aria-expanded="false" aria-controls="sidebarLanding">
+                                <i b-iu559il195 class="ri-account-circle-line text-info" style="font-size:18px"></i>
+                                <span b-iu559il195 data-key="t-Profile">Profile</span>
+                            </a>
+                        </li>  
+                        <li b-iu559il195 class="nav-item">
+                            <a b-iu559il195 class="nav-link menu-link" href="/Auth/UserProfile?cp=true" aria-expanded="false" aria-controls="sidebarLanding">
+                                <i b-iu559il195 class="ri-rotate-lock-line text-warning" style="font-size:18px"></i>
+                                <span b-iu559il195 data-key="t-Change-Password">Change Password</span>
+                            </a>
+                        </li> 
+                        <li b-iu559il195 class="nav-item">
+                            <a b-iu559il195 class="nav-link menu-link logout" href="/Auth/SignOut" aria-expanded="false" aria-controls="sidebarLanding">
+                                <i b-iu559il195 class=" ri-shut-down-line text-danger" style="font-size:18px"></i>
+                                <span b-iu559il195 data-key="t-Logout">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+            </div>
+
+            <div b-iu559il195 class="sidebar-background"></div>
+            <div b-iu559il195 class="navbar-footer-box">
+                <span b-iu559il195 class="navbar-footer-box-heading version-lg">Version - 1.0</span>
+                <span b-iu559il195 class="navbar-footer-box-heading version-sm">1.0</span>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <div b-iu559il195 class="vertical-overlay"></div>
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div b-iu559il195 class="main-content">
+            <!-- start page title -->
+            <div b-iu559il195 class="page-content">
+                <div b-iu559il195 class="container-fluid">
+                    <div b-iu559il195 class="row">
+                        <div b-iu559il195 class="col-12">
+                            <div b-iu559il195 class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
+                                <h4 b-iu559il195 class="mb-sm-0">User Profile</h4>
+
+                                <div b-iu559il195 class="page-title-right">
+                                    <ol b-iu559il195 class="breadcrumb mb-0">
+                                        <li b-iu559il195 class="breadcrumb-item"><a b-iu559il195 href="#"><i b-iu559il195 class="ri-home-5-fill" style="color: #ced4daf0;"></i></a></li>
+                                        <li b-iu559il195 class="breadcrumb-item"><a b-iu559il195 href="#" style="color: #ced4daf0;">User Profile</a></li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div b-iu559il195 class="body-content">
+                       
+                        
+<style>
+    .sts {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+    }
+</style>
+<form class="container-fluid overflow-x-hidden" action="/Auth/UserProfile" method="post" enctype="multipart/form-data">
+    <div class="profile-foreground position-relative mx-n4">
+        <div class="profile-wid-bg">
+        </div>
+    </div>
+    <div class="pt-4 mb-4 mb-lg-3 profile-wrapper">
+        <div class="row g-4 col-lg-11 mx-auto">
+            <div class="col-auto">
+                <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+                            <img src="/assets/images/male-default.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image material-shadow" alt="user-profile-image">
+                    
+                    <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                        <input type="hidden" id="Image" name="Image"/>
+                        <input type="hidden" id="Id" name="Id" value="7668cb8e-2164-400a-9243-d856ba967933"/>
+                        <input id="profile-img-file-input" type="file" name="ImageFile" class="profile-img-file-input">
+                        <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                            <span class="avatar-title rounded-circle bg-light text-body material-shadow">
+                                <i class="ri-camera-fill"></i>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--end col-->
+            <div class="col">
+                <div class="p-3">
+                    <h3 class="text-white mb-1">admin</h3>
+                    <p class="text-white text-opacity-75">Admin</p>
+                    <div class="hstack text-white-50 gap-1">
+                        <div class="me-2">
+                            <i class="ri-map-pin-user-line me-1 text-white text-opacity-75 fs-16 align-middle"></i>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                             
+        </div>
+        <!--end row-->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div>
+                <div class="d-flex profile-wrapper">
+                    <div class="flex-shrink-0" style="margin-left:auto">
+                        <button type="submit" class="btn btn-success btn-loading"><i class="fa fa-save"></i> Save Image</button>
+                    </div>
+                </div>
+                <!-- Tab panes -->
+                <div class="tab-content pt-4 text-muted">
+                    <div class="tab-pane active" id="overview-tab" role="tabpanel">
+                        <div class="row">
+                            <div class="col-xxl-9 mx-auto">
+                            
+                                <div class="card ribbon-box border right shadow-none mb-lg-0 material-shadow">
+                                    <div class="card-header" style="padding-top: 1rem;padding-bottom: 1rem;">
+                                        <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link pd active" data-bs-toggle="tab" href="#personalDetails" role="tab" aria-selected="true">
+                                                    <i class="far fa-user"></i> Personal Details
+                                                </a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link cp" data-bs-toggle="tab" href="#changePassword" role="tab" aria-selected="false" tabindex="-1">
+                                                    <i class="ri-lock-line"></i> Change Password
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body text-muted">
+                                        <div class="ribbon-three ribbon-three-success"><span class="fs-5">Info</span></div>
+                                        <div class="tab-content">
+                                        <div class="table-responsive px-lg-5 mx-md-5 pt-4 tab-pane active show" id="personalDetails" role="tabpanel">
+                                            <table class="table table-borderless mb-0">
+                                                <tbody>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Full Name :</th>
+                                                        <td class="py-1 text-muted">admin</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">User Name :</th>
+                                                        <td class="py-1 text-muted">admin</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Gender :</th>
+                                                        <td class="py-1 text-muted">Male</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Mobile :</th>
+                                                        <td class="py-1 text-muted">+91 8764536577</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Email :</th>
+                                                        <td class="py-1 text-muted">paulprobir47@gmail.com</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Address :</th>
+                                                        <td class="py-1 text-muted">
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="ps-0 py-1 w-25" scope="row">Status :</th>
+                                                        <td class="py-1 text-muted">
+                                                                <label class="sts" style="background: green;"></label>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="tab-pane" id="changePassword" role="tabpanel">
+                                                <div class="row g-2">
+                                                    <div class="col-lg-4">
+                                                        <div>
+                                                            <label for="oldpasswordInput" class="form-label">Old Password <span class="text-danger">*</span></label>
+                                                            <input type="password" name="OldPassword" class="form-control" id="oldpasswordInput" placeholder="Enter current password">
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-lg-4">
+                                                        <div>
+                                                            <label for="newpasswordInput" class="form-label">New Password <span class="text-danger">*</span></label>
+                                                            <input type="password" name="Password" class="form-control" id="newpasswordInput" placeholder="Enter new password">
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-lg-4">
+                                                        <div>
+                                                            <label for="confirmpasswordInput" class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                                            <input type="password" name="ConfirmPassword" class="form-control" id="confirmpasswordInput" placeholder="Confirm password">
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                    <div class="col-lg-12">
+                                                        <div class="text-end">
+                                                            <button type="button" onclick="changepassword()" class="btn btn-success"><i class="fa fa-save"></i> Change Password</button>
+                                                        </div>
+                                                    </div>
+                                                    <!--end col-->
+                                                </div>
+                                                <!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
+                <!--end tab-content-->
+            </div>
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
+</form>
+
+
+<script>
+    
+    function changepassword() {
+        var Op = $("#oldpasswordInput").val();
+        var p = $("#newpasswordInput").val();
+        var cp = $("#confirmpasswordInput").val();
+        if(Op.trim() == "")
+        {
+            WarningNormalSwal("Please enter the old password");
+        }
+        else if(p.trim() == "")
+        {
+            WarningNormalSwal("Please enter the new password");
+        }
+        else if (cp.trim() == "") {
+            WarningNormalSwal("Please enter the confirm password");
+        }
+        else if(p.trim() != cp.trim())
+        {
+            WarningNormalSwal("New password and confirm password should't be matched");
+        }
+        else{
+            var post_data = {}
+            post_data.OldPassword = $("#oldpasswordInput").val();
+            post_data.Password = $("#newpasswordInput").val();
+            post_data.ConfirmPassword = $("#confirmpasswordInput").val();
+            post_data.Id = $("#Id").val();
+            fatch_data("/Auth/ChangePassword", "post", post_data).done(function (response) {
+                if (response.responseType === "SUCCESS") {
+                    // toastr.success(response.message);
+                    SuccessNormalSwal(response.message);
+                    // Showloader();
+                    setTimeout(function () {
+                        location.href = "/Auth/SignOut"
+                    }, 1800);
+                }
+                else {
+                     // toastr.error(response.message);
+                    ErrorSwal(response.message);
+                }
+            })
+        }
+    }
+   
+</script>
+                    </div>
+
+                </div>
+                <!-- End Page-content -->
+
+                <footer b-iu559il195 class="footer">
+                    <div b-iu559il195 class="container-fluid">
+                        <div b-iu559il195 class="row">
+                            <div b-iu559il195 class="col-sm-6">
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> &copy; Cuba Infotech
+                            </div>
+                            <div b-iu559il195 class="col-sm-6">
+                                <div b-iu559il195 class="text-sm-end d-none d-sm-block">
+                                    Designed & Developed by Cuba Infotech
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+            
+        </div>
+    </div>
+ 
+    
+    <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/assets/libs/node-waves/waves.min.js"></script>
+    <script src="/assets/libs/feather-icons/feather.min.js"></script>
+    <script src="/assets/libs/flatpickr/flatpickr.min.js"></script>
+	<script src="/assets/js/pages/select2.init.js"></script>
+    <!-- JAVASCRIPT -->
+    <!-- <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script> -->
+    <script src="/assets/js/pages/profile-setting.init.js"></script>
+    <!-- prismjs plugin -->
+    <script src="/assets/libs/prismjs/prism.js"></script>
+    <script src="/assets/libs/sweetAlert/sweetalert2.min.js"></script>
+    <script src="/assets/js/sweetalerts.init.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <!-- dropzone min -->
+    <script src="/assets/libs/dropzone/dropzone-min.js"></script>
+    <!-- filepond js -->
+    <script src="/js/multipleimageupload.js"></script>
+    <script src="/assets/libs/filepond/filepond.min.js"></script>
+    <script src="/assets/libs/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js"></script>
+    <script src="/assets/libs/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="/assets/libs/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="/assets/libs/filepond-plugin-file-encode/filepond-plugin-file-encode.min.js"></script>
+    <script src="/assets/js/pages/form-file-upload.init.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/lib/summernote/summernote-lite.min.js"></script>
+    
+  
+</body>
+</html>
+<script>
+  
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    $('.select2').select2();
+    document.getElementById('SearchMenu').addEventListener('input', function () {
+        var query = this.value.toLowerCase();
+        var items = document.querySelectorAll('.root');
+        items.forEach(function (item) {
+            var text = item.textContent.toLowerCase();
+            var children = item.querySelectorAll('.sub');
+
+            // Initialize showItem based on the root item
+            var showItem = text.includes(query);
+
+            if (query !== "") {
+                // Check if any child item contains the query
+                let hasVisibleChild = false;
+
+                children.forEach(function (child) {
+                    if (child.textContent.toLowerCase().includes(query)) {
+                        hasVisibleChild = true; // Mark as true if any child matches
+                    }
+                });
+
+                // Combine results from root item and children
+                showItem = showItem || hasVisibleChild;
+
+                // Show or hide the item and its children
+                if (showItem) {
+                    item.style.display = '';
+                    var link = item.querySelector('a');
+                    link.classList.remove('collapsed');
+                    link.setAttribute('aria-expanded', 'true');
+                    var dropdown = item.querySelector('.menu-dropdown');
+                    dropdown.classList.add('show');
+
+                    // Show matching child items and hide others
+                    children.forEach(function (child) {
+                        if (child.textContent.toLowerCase().includes(query)) {
+                            child.style.display = ''; // Show matching child
+                        } else {
+                            child.style.display = 'none'; // Hide non-matching child
+                        }
+                    });
+                } else {
+                    item.style.display = 'none'; // Hide the item if no matches found
+                    var link = item.querySelector('a');
+                    link.classList.add('collapsed');
+                    var dropdown = item.querySelector('.menu-dropdown');
+                    dropdown.classList.remove('show');
+                    link.setAttribute('aria-expanded', 'false');
+                }
+            } else {
+                // When query is empty, show all items and their children
+                item.style.display = '';
+                var link = item.querySelector('a');
+                link.classList.add('collapsed');
+                var dropdown = item.querySelector('.menu-dropdown');
+                dropdown.classList.remove('show');
+                link.setAttribute('aria-expanded', 'false');
+
+                // Show all child items
+                children.forEach(function (child) {
+                    child.style.display = ''; // Show each child
+                });
+            }
+        });
+    });
+
+    function Showloader() {
+        var div = `<div class="loader"><div class="loader-content"></div></div>`
+
+        $('body').append(div);
+    }
+
+    function Hideloader() {
+        var loader = $('.loader');
+        loader.remove();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const button = document.getElementById('toggleThemeButton');
+        const htmlElement = document.documentElement; 
+        button.addEventListener('click', function () {
+            if (htmlElement) {
+                const currentTheme = htmlElement.getAttribute('data-bs-theme');
+                const newTheme = (currentTheme === 'light') ? 'light' : 'dark';
+                sessionStorage.setItem('data-bs-theme', newTheme);
+            } 
+        });
+    });
+    $(document).ready(function () {
+        $('.textEditor').summernote({
+            fontSizes: [
+                '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
+                '16', '17', '18', '19', '20', '21', '22', '23', '24', '25',
+                '26', '27', '28', '29', '30'
+            ],
+            fontNames: [
+                'Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana',
+                'Helvetica', 'Candara', 'Calibri', 'Optima', 'Cambria', 'Perpetua',
+                'Didot', 'Brush Script', 'Lucida Bright', 'Roboto', 'Open Sans',
+                'Poppins', 'sans-serif', 'serif', 'Montserrat', 'Lobster',
+                'Raleway', 'Playfair Display', 'Lora', 'Pacifico', 'Tangerine',
+                'Futura', 'Garamond', 'Baskerville', 'Arial Black', 'Comic Sans MS'
+            ],
+            fontNamesIgnoreCheck: [
+                'Arial', 'Courier New', 'Georgia', 'Times New Roman', 'Verdana',
+                'Helvetica', 'Candara', 'Calibri', 'Optima', 'Cambria', 'Perpetua',
+                'Didot', 'Brush Script', 'Lucida Bright', 'Roboto', 'Open Sans',
+                'Poppins', 'sans-serif', 'serif', 'Montserrat', 'Lobster',
+                'Raleway', 'Playfair Display', 'Lora', 'Pacifico', 'Tangerine',
+                'Futura', 'Garamond', 'Baskerville', 'Arial Black', 'Comic Sans MS'
+            ],
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'italic', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+                ['fontsize', ['fontsize']],
+                ['height', ['height']],
+            ],
+            popover: {
+                table: [
+                    ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight', 'toggle']],
+                    ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                    ['custom', ['tableStyles']]
+                ],
+            },
+        });
+    });
+
+    $(function () {
+        $("#ExportToExcel").click(function () {
+            var fileName = $(this).attr("data-fileName");
+            var wb = XLSX.utils.table_to_book(document.getElementById('TableData'), { sheet: "Sheet1" });
+            XLSX.writeFile(wb, fileName + ".xlsx");
+        });
+    });
+
+    $('.logout').on('click', function() {
+        localStorage.clear();
+        sessionStorage.clear();
+    });
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift().trim());
+    }
+    const userRole = getCookie("RoleName");
+    // if (userRole != "System Admin") {
+    //   document.addEventListener("contextmenu", function(e) {
+    //     e.preventDefault();
+    //    toastr.warning("Access denied: Right-click is disabled.");
+    //   });
+    // }
+
+
+
+    //Notification System
+    function playNotificationSound() {
+        const audio = new Audio('/assets/images/notifictationsound.mp3');
+        audio.play().catch(error => console.error("Error playing notification sound:", error));
+    }
+
+    let notificationCount = 0;
+
+    // SignalR Hub Connection
+    const connection = new signalR.HubConnectionBuilder().withUrl("/notificationHub").build();
+    connection.start();
+
+    connection.on("ReceiveNotificationForEvent", (notificationData) => {
+        // console.log(notificationData)
+        const userId = getCookie("UserId");
+
+        if (notificationData.userId.toString() === userId) {
+            const notificationId = notificationData.id;
+            if (!isNotificationExist(notificationId)) {
+                addNotificationForEvent(notificationData.message, notificationId);
+                saveNotificationToSessionStorage(notificationId, notificationData.message, "info");
+                showToastrNotification(notificationData.message, "info");
+                playNotificationSound();
+            }
+        } else {
+            console.log("This notification is not for the current user.");
+        }
+
+    });
+
+    function isNotificationExist(notificationId) {
+        const existingNotifications = JSON.parse(sessionStorage.getItem('notificationIds')) || [];
+        return existingNotifications.includes(notificationId);
+    }
+    function showToastrNotification(data, type) {
+        let message = "";
+        if (type === "info") {
+            data.forEach(item => {
+                message += `<div>${item}</div>`;
+            });
+        } 
+        
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        Command: toastr[type](message, type.charAt(0).toUpperCase() + type.slice(1));
+    }
+
+    function generateUniqueId() {
+        return 'notif_' + Date.now() + Math.random().toString(36).substr(2, 9);
+    }
+    function saveNotificationToSessionStorage(notificationId, data, type = "normal") {
+        const existingNotifications = JSON.parse(sessionStorage.getItem('notificationIds')) || [];
+        const existingData = JSON.parse(sessionStorage.getItem('notificationsData')) || {};
+
+        existingNotifications.push(notificationId);
+        existingData[notificationId] = { type, message: data };
+
+        sessionStorage.setItem('notificationIds', JSON.stringify(existingNotifications));
+        sessionStorage.setItem('notificationsData', JSON.stringify(existingData));
+    }
+    function removeNotificationIdFromSessionStorage(notificationId) {
+        let existingNotifications = JSON.parse(sessionStorage.getItem('notificationIds')) || [];
+        let existingData = JSON.parse(sessionStorage.getItem('notificationsData')) || {};
+
+        existingNotifications = existingNotifications.filter(id => id !== notificationId);
+        delete existingData[notificationId];
+
+        sessionStorage.setItem('notificationIds', JSON.stringify(existingNotifications));
+        sessionStorage.setItem('notificationsData', JSON.stringify(existingData));
+    }
+
+    function addNotificationForEvent(data, notificationId) {
+        let title = data[0] || "Unknown Title";
+        let messages = data.slice(1);
+        let messageHtml = messages.map(item => `<p class="mb-1">${item}</p>`).join("");
+        // console.log(data)
+        let notificationHtml = `
+            <div class="text-reset notification-item d-block dropdown-item" id="${notificationId}">
+                <div class="d-flex">
+                    <div class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                        <i class="ri-wechat-fill fs-2 text-info"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="stretched-link">
+                            <h6 class="mt-0 mb-1 fs-13 fw-semibold">${title}</h6>
+                        </div>
+                        <div class="fs-13 text-muted">
+                            ${messageHtml}
+                        </div>
+                    </div>
+                    <div class="px-2 fs-15">
+                        <div class="form-check notification-check" style="z-index:1000">
+                            <i class="fa-solid fa-xmark" onclick="RemoveNotification(this)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        notificationCount++;
+        updateNotificationCount();
+        $(".noti-content").prepend(notificationHtml);
+    }
+    function RemoveNotification(element) {
+        const parentElement = element.closest('.notification-item');
+        const notificationId = parentElement.id;
+        if (notificationId && !notificationId.startsWith("notif_")) {
+            const post_data = {
+                Id: notificationId
+            };
+            $.ajax({
+                type: 'post',
+                url: '/APP/UpdateReadNotificationByUser',
+                data: JSON.stringify(post_data),
+                contentType: "application/json; charset=utf-8",
+                traditional: true,
+                success: function (data) {
+                    if (data.responseType === "SUCCESS") {
+                        console.log("success")
+                    }
+                }
+            });
+        }
+
+        if (parentElement) {
+            parentElement.remove();
+        }
+        notificationCount--;
+        removeNotificationIdFromSessionStorage(notificationId);
+        updateNotificationCount();
+    }
+   
+    function loadNotifications() {
+        const existingNotifications = JSON.parse(sessionStorage.getItem('notificationIds')) || [];
+        const existingData = JSON.parse(sessionStorage.getItem('notificationsData')) || {};
+
+        existingNotifications.forEach(notificationId => {
+            if (!document.getElementById(notificationId)) {
+                const notification = existingData[notificationId];
+                if (notification.type === "info") {
+                    addNotificationForEvent(notification.message, notificationId);
+                } else {
+                    addNotification(notification.message, notificationId);
+                }
+            }
+        });
+    }
+    function updateNotificationCount() {
+        if (notificationCount === 0) {
+            $(".NotiCount").addClass("d-none").text("");
+            $(".empty-notification-elem").removeClass("d-none");
+        } else if (notificationCount > 9) {
+            $(".NotiCount").removeClass("d-none").text("9+");
+        } else {
+            $(".empty-notification-elem").addClass("d-none");
+            $(".NotiCount").removeClass("d-none").text(notificationCount);
+        }
+    }
+    $('#clearAll').on('click', function () {
+
+        const existingNotifications = JSON.parse(sessionStorage.getItem('notificationIds')) || [];
+
+        const matchingIds = existingNotifications.filter(notificationId => !notificationId.startsWith("notif_"));
+
+        if (matchingIds.length > 0) {
+            const post_data = {
+                LogId: matchingIds,
+            };
+            $.ajax({
+                type: 'post',
+                url: '/APP/UpdateReadNotification',
+                data: JSON.stringify(post_data),
+                contentType: "application/json; charset=utf-8",
+                traditional: true,
+                success: function (data) {
+                    if (data.responseType === "SUCCESS") {
+                        // console.log("success")
+                    }
+                }
+            });
+        }
+        $('.notification-item').remove();
+        notificationCount = 0;
+        updateNotificationCount();
+        sessionStorage.removeItem('notificationIds');
+        sessionStorage.removeItem('notificationsData');
+    });
+    $(document).ready(function () {
+       loadNotifications();
+    });
+
+    window.onload = function () {
+       setTimeout(function () {
+            var connection = new signalR.HubConnectionBuilder()
+                .withUrl("/notificationHub")
+                .build();
+
+            connection.start().then(function () {
+                console.log('SignalR connection established.');
+
+                fetch('/api/API/ReloadNotification', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                })
+                .then(response => response.json())
+                .then(data => console.log('Notification sent:', data))
+                .catch(error => console.log('Error:', error));
+            }).catch(function (err) {
+                console.log('SignalR connection error: ', err);
+            });
+        }, 30000);
+    };
+</script>
