@@ -1,169 +1,138 @@
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-bs-theme="light" data-sidebar-size="sm" data-sidebar-image="none" data-preloader="enable" data-theme="default" data-theme-colors="default">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulse Medicare Dashboard</title>
+<title>Pulse Dashboard</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
 *{
-    margin:1;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f4f6f9;
+display:flex;
+background:#f4f7fc;
 }
 
 /* Sidebar */
 
 .sidebar{
-    position:fixed;
-    width:230px;
-    height:100%;
-    background:#009688;
-    color:#fff;
+width:230px;
+height:100vh;
+background:#00897B;
+color:#fff;
+position:fixed;
 }
 
 .logo{
-    text-align:center;
-    padding:25px;
-    border-bottom:1px solid rgba(255,255,255,.2);
+padding:20px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+border-bottom:1px solid rgba(255,255,255,.2);
 }
 
 .logo i{
-    font-size:50px;
-}
-
-.logo h2{
-    margin-top:10px;
+font-size:40px;
+display:block;
+margin-bottom:10px;
 }
 
 .sidebar ul{
-    list-style:none;
+list-style:none;
 }
 
 .sidebar ul li{
-    padding:16px 25px;
-    cursor:pointer;
-    transition:.3s;
+padding:15px 20px;
+cursor:pointer;
 }
 
 .sidebar ul li:hover{
-    background:#00796B;
+background:#00695C;
 }
 
-.sidebar ul li i{
-    width:30px;
+.sidebar i{
+margin-right:10px;
 }
 
 /* Main */
 
 .main{
-    margin-left:230px;
+margin-left:230px;
+width:100%;
 }
 
-/* Top Bar */
+/* Top */
 
 .topbar{
-    background:#fff;
-    height:70px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 30px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
+height:70px;
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 25px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-.topbar input{
-    padding:10px;
-    width:300px;
-    border:1px solid #ccc;
-    border-radius:5px;
+.search input{
+padding:8px;
+width:250px;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
 .profile{
-    font-weight:bold;
+font-weight:bold;
 }
 
-/* Dashboard Cards */
+/* Cards */
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    padding:25px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:25px;
 }
 
 .card{
-    background:#fff;
-    padding:25px;
-    border-radius:10px;
-    text-align:center;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
+background:white;
+padding:25px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
 }
 
 .card i{
-    font-size:40px;
-    color:#009688;
+font-size:35px;
+color:#00897B;
+margin-bottom:10px;
 }
 
 .card h2{
-    margin:15px 0;
-}
-
-.card p{
-    color:#666;
-}
-
-/* Table */
-
-.table-box{
-    background:#fff;
-    margin:25px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:12px;
-    text-align:left;
-    border-bottom:1px solid #ddd;
-}
-
-th{
-    background:#009688;
-    color:#fff;
+margin:10px 0;
 }
 
 .footer{
-    text-align:center;
-    padding:20px;
-    color:#666;
+text-align:center;
+padding:20px;
+color:#777;
 }
 </style>
 
 </head>
-
 <body>
-
-<!-- Sidebar -->
 
 <div class="sidebar">
 
 <div class="logo">
 <i class="fa-solid fa-heart-pulse"></i>
-<h2>Pulse</h2>
-<p>Medicare</p>
+Pulse
 </div>
 
 <ul>
@@ -229,97 +198,66 @@ th{
 </li>
 
 </ul>
-
-
-<!-- Main -->
+</div>
 
 <div class="main">
 
 <div class="topbar">
 
+<div class="search">
 <input type="text" placeholder="Search...">
+</div>
 
 <div class="profile">
-<i class="fa fa-user-circle"></i>
-Administrator
+<i class="fa fa-user-circle"></i> Admin
 </div>
 
 </div>
-
-<!-- Cards -->
 
 <div class="cards">
 
 <div class="card">
 <i class="fa fa-users"></i>
-<h2>320</h2>
-<p>Total Patients</p>
+<h2>250</h2>
+<p>Patients</p>
 </div>
 
 <div class="card">
 <i class="fa fa-user-doctor"></i>
-<h2>28</h2>
-<p>Total Doctors</p>
+<h2>45</h2>
+<p>Doctors</p>
 </div>
 
 <div class="card">
 <i class="fa fa-calendar-check"></i>
-<h2>95</h2>
+<h2>120</h2>
 <p>Appointments</p>
 </div>
 
 <div class="card">
 <i class="fa fa-indian-rupee-sign"></i>
-<h2>₹2.5L</h2>
+<h2>₹85,000</h2>
 <p>Revenue</p>
 </div>
 
 </div>
 
-<!-- Table -->
+<div style="padding:25px;">
 
-<div class="table-box">
-
-<h2>Recent Appointments</h2>
+<h2>Welcome to Pulse Medicare Dashboard</h2>
 
 <br>
 
-<table>
-
-<tr>
-<th>Patient</th>
-<th>Doctor</th>
-<th>Date</th>
-<th>Status</th>
-</tr>
-
-<tr>
-<td>Rahul Sharma</td>
-<td>Dr. Kumar</td>
-<td>30 Jun 2026</td>
-<td>Completed</td>
-</tr>
-
-<tr>
-<td>Priya Das</td>
-<td>Dr. Singh</td>
-<td>30 Jun 2026</td>
-<td>Pending</td>
-</tr>
-
-<tr>
-<td>Amit Roy</td>
-<td>Dr. Patel</td>
-<td>01 Jul 2026</td>
-<td>Confirmed</td>
-</tr>
-
-</table>
+<p>
+Manage Patients, Doctors, Appointments, Pharmacy, Billing and Reports from one place.
+</p>
 
 </div>
 
 <div class="footer">
-Developed by <strong>Pro Infotech</strong>
+
+Developed by <b>Pro Infotech</b>
+
 </div>
 
 </div>
