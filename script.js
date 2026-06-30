@@ -1,0 +1,1 @@
+console.log("Pulse Medicare Dashboard Loaded");
